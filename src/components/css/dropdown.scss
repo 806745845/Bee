@@ -1,0 +1,18 @@
+@import "_mixin.scss";
+@import "_variables.scss";
+
+.be-dropdown {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: $z-dropdown;
+	.show {
+		@include animate-fade(fade-in);
+	}
+	.hide {
+		@include animate-fade(fade-out);
+	}
+}
+
+@include fade-in;
+@include fade-out;

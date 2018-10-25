@@ -1,0 +1,297 @@
+@import "_mixin.scss";
+@import "_variables.scss";
+
+@mixin select-size($height){
+	height: $height - 2px;
+	line-height: $height - 2px;
+}
+
+@mixin select-icon-size($height){
+	width: $height - 2px;
+	height: $height - 2px;
+	line-height: $height - 2px;
+}
+
+@mixin select-color($color-border, $color-background, $color-font){
+	border-color: $color-border;
+	background-color: $color-background;
+	color: $color-font;
+}
+
+.be-select {
+	display: inline-block;
+	position: relative;
+	border: 1px solid transparent;
+	border-radius: $radius;
+	@include trans-fast;
+	.select-selected {
+		display: block;
+		margin: 0;
+		padding: 0 $pad-xs;
+		font-size: $fs;
+		@include select-size($height);
+		@include ellipsis;
+	}
+	.select-placeholder {
+		color: $color-placeholder;
+	}
+	.select-value {
+		color: $color-dark;
+	}
+	.select-icon {
+		display: block;
+		position: absolute; 
+		z-index: 2;
+		top: 0;
+		right: 0;
+		text-align: center;
+		font-size: $fs;
+		@include select-icon-size($height);
+		@include trans-fast;
+		~ .select-selected {
+			padding-right: $height - 2px;
+		}
+	}
+	&.block {
+		width: 100%;
+	}
+	&.default {
+		@include select-color($color-gray-light, $color-white, $color-dark);
+	}
+	&.shadow {
+		@include select-color($color-gray-lightest, $color-gray-lightest, $color-dark);
+	}
+	&.default,
+	&.shadow {
+		&:hover,
+		&.active {
+			@include focus;
+			.select-icon {
+				color: $color-primary;
+			}
+			.select-placeholder {
+				color: $color-placeholder;
+			}
+		}
+	}
+	&.primary {
+		@include select-color($color-primary, $color-primary, $color-white);
+		&:hover,
+		&.active {
+			@include select-color($color-primary-light, $color-primary-light, $color-white);
+		}
+		.select-placeholder {
+			color: $color-primary-lightest;
+		}
+	}
+	&.warning {
+		@include select-color($color-warning, $color-warning, $color-white);
+		&:hover,
+		&.active {
+			@include select-color($color-warning-light, $color-warning-light, $color-white);
+		}
+		.select-placeholder {
+			color: $color-warning-lightest;
+		}
+	}
+	&.danger {
+		@include select-color($color-danger, $color-danger, $color-white);
+		&:hover,
+		&.active {
+			@include select-color($color-danger-light, $color-danger-light, $color-white);
+		}
+		.select-placeholder {
+			color: $color-danger-lightest;
+		}
+	}
+	&.success {
+		@include select-color($color-success, $color-success, $color-white);
+		&:hover,
+		&.active {
+			@include select-color($color-success-light, $color-success-light, $color-white);
+		}
+		.select-placeholder {
+			color: $color-success-lightest;
+		}
+	}
+	&.small {
+		border-radius: $radius-s;
+		.select-selected {
+			@include select-size($height-s);
+		}
+		.select-icon {
+			@include select-icon-size($height-s);
+			~ .select-selected {
+				padding-right: $height-s - 2px;
+			}
+		}
+	}
+	&.big {
+		.select-selected {
+			padding-left: $pad-s;
+			@include select-size($height-l);
+		}
+		.select-icon {
+			font-size: $fs-l;
+			@include select-icon-size($height-l);
+			~ .select-selected {
+				padding-right: $height-l - 2px;
+			}
+		}
+	}
+	&.disabled {
+		border-color: $color-gray-lighter;
+		background-color: $color-gray-lightest;
+		color: $color-gray-light;
+		cursor: $cursor-disabled;
+		&:hover {
+			border-color: $color-gray-lighter !important;
+			background-color: $color-gray-lightest !important;
+			color: $color-gray-light;
+			cursor: $cursor-disabled;
+			@include box-shadow-none;
+			.select-icon {
+				color: $color-gray-light;
+			}
+		}
+	}
+	&.simple {
+		width: auto;
+		border-color: transparent;
+		border-radius: 0;
+		color: $color-primary;
+		.select-selected {
+			padding-left: 0;
+		}
+		.select-icon {
+			color: $color-primary;
+		}
+		&.disabled {
+			border-color: transparent !important;
+			background-color: transparent !important;
+			color: $color-gray-light;
+			.select-icon {
+				color: $color-gray-light;
+			}
+		}
+	}
+	&:hover,
+	&.active {
+		cursor: $cursor-pointer;
+	}
+	&.active {
+		.select-icon {
+			@include flip;
+		}
+	}
+}
+
+.be-select-content {
+	display: inline-block;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border-radius: $radius;
+	&:not(:first-child):not(:last-child) {
+		border-radius: 0;
+	}
+	&:first-child:not(:last-child) {
+		border-radius: $radius 0 0 $radius;
+	}
+	&:last-child:not(:first-child) {
+		border-radius: 0 $radius $radius 0;
+	}
+	ul {
+		margin: 0;
+		padding: 0;
+		li {
+			display: block;
+			position: relative;
+			.select-item {
+				display: block;
+				position: relative;
+				min-width: 96px;
+				margin: 0;
+				padding: 0 $pad-xs;
+				height: $height;
+				line-height: $height;
+				font-size: $fs;
+				color: $color-dark;
+				@include ellipsis;
+				&:hover {
+					cursor: $cursor-pointer;
+					background-color: lighten($color-primary-lightest, 5%);
+				}
+				&.active {
+					background-color: $color-gray-lightest;
+					font-weight: bold;
+				}
+				&.disabled {
+					color: $color-gray-light;
+					background-color: $color-white;
+					cursor: $cursor-disabled;
+				}
+				&.expand {
+					padding-right: $height-s;
+					i {
+						display: block;
+						position: absolute;
+						z-index: 2;
+						top: 0;
+						right: 0;
+						text-align: center;
+						width: $height-s;
+						height: $height;
+						line-height: $height;
+						font-size: $fs-s;
+						color: $color-gray;
+					}
+					&.disabled i {
+						color: $color-gray-light;
+					}
+				}
+			}
+		}
+	}
+}
+
+.be-select-cascader {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	font-size: 0;
+	border-radius: $radius;
+	background-color: $color-white;
+	@include box-shadow;
+	.be-select-content {
+		overflow: auto;
+		height: $height-select;
+		border-left: 1px solid $color-gray-lighter;
+		&:first-child {
+			border-left: none;
+		}
+	}
+}
+
+.be-select-list {
+	margin: 0;
+	padding: 0;
+	font-size: 0;
+	border-radius: $radius;
+	background-color: $color-white;
+	@include box-shadow;
+	ul li {
+		.select-item {
+			border-radius: $radius;
+		}
+		&:not(:first-child):not(:last-child) .select-item {
+			border-radius: 0;
+		}
+		&:first-child:not(:last-child) .select-item {
+			border-radius: $radius $radius 0 0;
+		}
+		&:last-child:not(:first-child) .select-item {
+			border-radius: 0 0 $radius $radius;
+		}
+	}
+}

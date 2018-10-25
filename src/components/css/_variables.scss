@@ -1,0 +1,105 @@
+// font-size
+$fs-s: 10px;
+$fs: 12px;
+$fs-l: 14px;
+$fs-xl: 16px;
+$fs-2xl: 20px;
+$fs-3xl: 24px;
+
+// color
+$color-primary: #0374ea;
+$color-primary-dark: darken($color-primary, 7%);
+$color-primary-light: lighten($color-primary, 10%);
+$color-primary-lighter: lighten($color-primary, 30%);
+$color-primary-lightest: lighten($color-primary, 45%);
+$color-warning: #ffc107;
+$color-warning-dark: darken($color-warning, 7%);
+$color-warning-light: lighten($color-warning, 10%);
+$color-warning-lighter: lighten($color-warning, 30%);
+$color-warning-lightest: lighten($color-warning, 40%);
+$color-danger: #dc3545;
+$color-danger-dark: darken($color-danger, 7%);
+$color-danger-light: lighten($color-danger, 10%);
+$color-danger-lighter: lighten($color-danger, 30%);
+$color-danger-lightest: lighten($color-danger, 40%);
+$color-success: #5cb85c;
+$color-success-dark: darken($color-success, 7%);
+$color-success-light: lighten($color-success, 10%);
+$color-success-lighter: lighten($color-success, 30%);
+$color-success-lightest: lighten($color-success, 40%);
+$color-dark: #212121;
+$color-gray: #7a7a7a;
+$color-gray-light: #d1d1d1;
+$color-gray-lighter: #e8e8e8;
+$color-gray-lightest: #f7f7f7;
+$color-placeholder: #a4a4a4;
+$color-white: #fff;
+
+// width
+$width-2xs: 180px;
+$width-xs: 240px;
+$width-s: 360px;
+$width: 480px;
+$width-l: 600px;
+$width-xl: 720px;
+$width-2xl: 960px;
+
+// height
+$height-2xs: 14px;
+$height-xs: 18px;
+$height-s: 26px;
+$height: 34px;
+$height-l: 42px;
+$height-xl: 60px;
+$height-modal: 48px;
+$height-inner-header: $height-modal;
+$height-select: $width-2xs;
+
+// padding
+$pad-3xs: 2px;
+$pad-2xs: 4px;
+$pad-xs: 8px;
+$pad-s: 12px;
+$pad: 16px;
+$pad-l: 20px;
+$pad-xl: 24px;
+$pad-modal: 60px;
+
+$top-alert: $pad-modal;
+
+// margin
+$mar-3xs: 2px;
+$mar-2xs: 4px;
+$mar-xs: 8px;
+$mar-s: 12px;
+$mar: 16px;
+$mar-l: 20px;
+$mar-xl: 24px;
+
+// border-radius
+$radius-s: 2px;
+$radius: 3px;
+$radius-l: 6px;
+
+// pct
+$pct100: 100%;
+
+// z-index
+$z-modal: 9999;
+$z-alert: $z-modal;
+$z-dropdown: $z-modal;
+$z-loading: 10000;
+
+// align
+$left: left;
+$center: center;
+$right: right;
+$top: top;
+
+// cursor
+$cursor-pointer: pointer;
+$cursor-disabled: not-allowed;
+
+// other
+$none: none;
+

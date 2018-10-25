@@ -1,0 +1,133 @@
+@import "_mixin.scss";
+@import "_variables.scss";
+
+@mixin alert-color($color-border, $color-background){
+	border-color: $color-border;
+	background-color: $color-background;
+}
+
+.be-alert-fixed {
+	z-index: $z-alert;
+	@include fixed-full;
+	pointer-events: none;
+	.be-alert-box {
+		margin-top: $mar;
+		text-align: center;
+	}
+	.be-alert {
+		display: inline-block;
+		max-width: 80%;
+		@include alert-color($color-white, $color-white);
+		@include box-shadow;
+		&.primary,
+		&.warning,
+		&.danger,
+		&.success {
+			@include alert-color($color-white, $color-white);
+		}
+	}
+	.show {
+		@include animate-fade(fade-in);
+	}
+	.hide {
+		@include animate-fade(fade-out);
+	}
+}
+
+.be-alert {
+	position: relative;
+	z-index: 1;
+	border: 1px solid transparent;
+	padding: $pad-xs;
+	padding-right: 14px;
+	pointer-events: auto;
+	border-radius: $radius;
+	.alert-close {
+		position: absolute;
+		z-index: 2;
+		opacity: 0.5;
+		text-align: center;
+		top: $pad-xs;
+		right: $pad-xs;
+		width: $height-s;
+		height: $height-s;
+		line-height: $height-s;
+		font-size: $fs-l;
+		~ .alert-title,
+		~ .alert-content {
+			padding-right: $height-s;
+		}
+		&:hover {
+			opacity: 1;
+			cursor: $cursor-pointer;
+		}
+	}
+	.alert-title {
+		font-weight: bold;
+		font-size: $fs;
+		line-height: $height-s;
+	}
+	.alert-content {
+		padding: $pad-2xs 0;
+		font-size: $fs;
+		line-height: $height-xs;
+	}
+	.alert-icon {
+		position: absolute;
+		z-index: 2;
+		text-align: center;
+		top: $pad-xs;
+		left: $pad-xs;
+		width: $height-s;
+		height: $height-s;
+		line-height: $height-s;
+		font-size: $fs-l;
+		~ .alert-title,
+		~ .alert-content {
+			padding-left: $height-s;
+		}
+	}
+	&.primary {
+		@include alert-color($color-primary-lighter, $color-primary-lightest);
+		.alert-title {
+			color: $color-primary-dark;
+		}
+		.alert-icon,
+		.alert-content {
+			color: $color-primary;
+		}
+	}
+	&.warning {
+		@include alert-color($color-warning-lighter, $color-warning-lightest);
+		.alert-title {
+			color: $color-warning-dark;
+		}
+		.alert-icon,
+		.alert-content {
+			color: $color-warning;
+		}
+	}
+	&.danger {
+		@include alert-color($color-danger-lighter, $color-danger-lightest);
+		.alert-title {
+			color: $color-danger-dark;
+		}
+		.alert-icon,
+		.alert-content {
+			color: $color-danger;
+		}
+	}
+	&.success {
+		@include alert-color($color-success-lighter, $color-success-lightest);
+		.alert-title {
+			color: $color-success-dark;
+		}
+		.alert-icon,
+		.alert-content {
+			color: $color-success;
+		}
+	}
+}
+
+@include fade-in;
+@include fade-out;

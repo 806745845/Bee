@@ -1,0 +1,46 @@
+.scrollBoxWrap {
+  position: relative;
+  width: 100%;
+  height: inherit;
+  overflow: hidden; }
+  .scrollBoxWrap ::-webkit-scrollbar {
+    width: 0;
+    height: 0; }
+  .scrollBoxWrap .scrollBarWrapY {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    top: 0;
+    z-index: 2; }
+    .scrollBoxWrap .scrollBarWrapY .scrollBarY {
+      position: absolute;
+      left: 0;
+      right: 0;
+      border-radius: 4px;
+      cursor: pointer; }
+  .scrollBoxWrap .scrollBarWrapX {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: 2; }
+    .scrollBoxWrap .scrollBarWrapX .scrollBarX {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      border-radius: 4px;
+      cursor: pointer; }
+  .scrollBoxWrap .scrollContentWrap {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto; }
+    .scrollBoxWrap .scrollContentWrap .scrollContent {
+      float: left;
+      min-width: 100%; }
+
+/*# sourceMappingURL=scrollBox.css.map */

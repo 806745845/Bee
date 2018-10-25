@@ -1,0 +1,229 @@
+@import "_mixin.scss";
+@import "_variables.scss";
+
+@mixin button-color($color-border, $color-background, $color-font){
+	border-color: $color-border;
+	background-color: $color-background;
+	color: $color-font;
+}
+
+@mixin button-size($pad, $height, $radius){
+	padding: 0 $pad;
+	height: $height;
+	line-height: $height - 2px;
+	border-radius: $radius;
+}
+
+@mixin button-icon-size($height){
+	height: $height - 2px;
+	line-height: $height - 2px;
+}
+
+.be-button {
+	display: inline-block;
+	text-align: center;
+	white-space: nowrap;
+	border: 1px solid transparent;
+	font-size: $fs;
+	@include button-size($pad, $height, $radius);
+	@include trans-fast;
+	@include user-select(none);
+	&.default {
+		@include button-color($color-gray-light, $color-white, $color-dark);
+		&:hover {
+			@include button-color($color-primary, $color-white, $color-primary);
+		}
+		&.doing {
+			@include button-color($color-gray-lighter, $color-white, $color-gray-lighter);
+		}
+	}
+	&.link,
+	&.link:hover {
+		@include button-color($color-white, $color-white, $color-primary);
+		&.doing {
+			@include button-color($color-white, $color-white, $color-primary-lighter);
+		}
+	}
+	&.primary {
+		@include button-color($color-primary, $color-primary, $color-white);
+		&:hover {
+			@include button-color($color-primary-light, $color-primary-light, $color-white);
+		}
+		&.doing {
+			@include button-color($color-primary-lighter, $color-primary-lighter, $color-white);
+		}
+	}
+	&.primary-ghost {
+		@include button-color($color-primary, $color-white, $color-primary);
+		&:hover {
+			@include button-color($color-primary, $color-primary, $color-white);
+		}
+		&.doing {
+			@include button-color($color-primary-lighter, $color-white, $color-primary-lighter);
+		}
+	}
+	&.warning {
+		@include button-color($color-warning, $color-warning, $color-white);
+		&:hover {
+			@include button-color($color-warning-light, $color-warning-light, $color-white);
+		}
+		&.doing {
+			@include button-color($color-warning-lighter, $color-warning-lighter, $color-white);
+		}
+	}
+	&.warning-ghost {
+		@include button-color($color-warning, $color-white, $color-warning);
+		&:hover {
+			@include button-color($color-warning, $color-warning, $color-white);
+		}
+		&.doing {
+			@include button-color($color-warning-lighter, $color-white, $color-warning-lighter);
+		}
+	}
+	&.danger {
+		@include button-color($color-danger, $color-danger, $color-white);
+		&:hover {
+			@include button-color($color-danger-light, $color-danger-light, $color-white);
+		}
+		&.doing {
+			@include button-color($color-danger-lighter, $color-danger-lighter, $color-white);
+		}
+	}
+	&.danger-ghost {
+		@include button-color($color-danger, $color-white, $color-danger);
+		&:hover {
+			@include button-color($color-danger, $color-danger, $color-white);
+		}
+		&.doing {
+			@include button-color($color-danger-lighter, $color-white, $color-danger-lighter);
+		}
+	}
+	&.success {
+		@include button-color($color-success, $color-success, $color-white);
+		&:hover {
+			@include button-color($color-success-light, $color-success-light, $color-white);
+		}
+		&.doing {
+			@include button-color($color-success-lighter, $color-success-lighter, $color-white);
+		}
+	}
+	&.success-ghost {
+		@include button-color($color-success, $color-white, $color-success);
+		&:hover {
+			@include button-color($color-success, $color-success, $color-white);
+		}
+		&.doing {
+			@include button-color($color-success-lighter, $color-white, $color-success-lighter);
+		}
+	}
+	&,
+	&:visited,
+	&:hover,
+	&:active,
+	&:focus {
+		text-decoration: $none;
+		outline: $none;
+	}
+	&.disabled,
+	&.disabled:hover,
+	&[disabled],
+	&[disabled]:hover {
+		cursor: $cursor-disabled;
+		@include button-color($color-gray-lighter, $color-gray-lightest, $color-gray-light);
+	}
+	& > i {
+		display: inline-block;
+		text-align: center;
+		width: $height-xs;
+		vertical-align: $top;
+		@include button-icon-size($height);
+	}
+	&.doing {
+		cursor: $cursor-disabled;
+		> i {
+			@include animate(rotate);
+		}
+	}
+	&.small {
+		@include button-size($pad-s, $height-s, $radius-s);
+		> i {
+			@include button-icon-size($height-s);
+		}
+	}
+	&.big {
+		font-size: $fs-l;
+		@include button-size($pad-l, $height-l, $radius);
+		> i {
+			@include button-icon-size($height-l);
+		}
+	}
+	&.block {
+		display: block;
+		width: 100%;
+	}
+}
+
+.be-button-group {
+	font-size: 0;
+	text-align: center;
+	%margin {
+		&:not(:first-child):not(:last-child) {
+			margin-right: $mar-3xs;
+			margin-left: $mar-3xs;
+		}
+		&:first-child:not(:last-child) {
+			margin-right: $mar-3xs;
+		}
+		&:last-child:not(:first-child) {
+			margin-left: $mar-3xs;
+		}
+	}
+	> .be-button-group {
+		display: inline-block;
+		@extend %margin;
+	}
+	.be-button {
+		@extend %margin;
+	}
+	&.left {
+		text-align: left;
+	}
+	&.right {
+		text-align: right;
+	}
+	&.small .be-button {
+		@include button-size($pad-s, $height-s, $radius-s);
+		> i {
+			@include button-icon-size($height-s);
+		}
+	}
+	&.big .be-button {
+		font-size: $fs-l;
+		@include button-size($pad-l, $height-l, $radius);
+		> i {
+			@include button-icon-size($height-l);
+		}
+	}
+	&.cling .be-button {
+		position: relative;
+		margin-right: 0!important;
+		margin-left: -1px!important;
+		&:hover {
+			z-index: 2;
+		}
+		&:not(:first-child):not(:last-child) {
+			border-radius: 0;
+		}
+		&:first-child:not(:last-child) {
+			border-radius: $radius 0 0 $radius;
+		}
+		&:last-child:not(:first-child) {
+			border-radius: 0 $radius $radius 0;
+		}
+		&:first-child {
+			margin-left: 0!important;
+		}
+	}
+}
+
+@include rotate;

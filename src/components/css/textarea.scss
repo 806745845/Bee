@@ -1,0 +1,26 @@
+@import "_mixin.scss";
+@import "_variables.scss";
+
+.be-textarea {
+	display: inline-block;
+	width: 100%;
+	min-height: $height-s * 3;
+	padding: $pad-xs;
+	line-height: 1.4;
+	border-radius: $radius;
+	border: 1px solid $color-gray-light;
+	background-color: $color-white;
+	font-size: $fs;
+	@include trans-fast;
+	&[readonly],
+	&[disabled] {
+		background-color: $color-gray-lightest;
+	}
+	&[disabled] {
+		border-color: $color-gray-lighter;
+		cursor: $cursor-disabled;
+	}
+	&:focus {
+		@include focus;
+	}
+}

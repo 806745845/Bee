@@ -1,0 +1,304 @@
+@import "_mixin.scss";
+@import "_variables.scss";
+
+@mixin input-size($height, $radius){
+	height: $height;
+	border-radius: $radius;
+}
+
+@mixin input-icon-size($height, $font){
+	width: $height;
+	height: $height;
+	line-height: $height;
+	font-size: $font;
+}
+
+@mixin select-size($height){
+	height: $height - 2px;
+	line-height: $height - 2px;
+}
+
+@mixin select-icon-size($height){
+	width: $height - 2px;
+	height: $height - 2px;
+	line-height: $height - 2px;
+}
+
+@mixin button-size($pad, $height, $radius){
+	padding: 0 $pad;
+	height: $height;
+	line-height: $height - 2px;
+	border-radius: $radius;
+}
+
+@mixin button-icon-size($height){
+	height: $height - 2px;
+	line-height: $height - 2px;
+}
+
+@mixin text-size($pad, $height, $radius){
+	padding: 0 $pad;
+	height: $height;
+	line-height: $height - 2px;
+	border-radius: $radius;
+}
+
+@mixin text-icon-size($height, $font){
+	height: $height - 2px;
+	line-height: $height - 2px;
+	font-size: $font;
+}
+
+.be-input {
+	display: inline-block;
+	width: 100%;
+	padding: 0 $pad-xs;
+	border: 1px solid $color-gray-light;
+	background-color: $color-white;
+	font-size: $fs;
+	@include input-size($height, $radius);
+	@include trans-fast;
+	&.shadow {
+		border-color: $color-gray-lightest;
+		background-color: $color-gray-lightest;
+	}
+	&.small {
+		@include input-size($height-s, $radius-s);
+	}
+	&.big {
+		@include input-size($height-l, $radius);
+	}
+	&[readonly],
+	&[disabled] {
+		background-color: $color-gray-lightest;
+	}
+	&[disabled] {
+		border-color: $color-gray-lighter;
+		cursor: $cursor-disabled;
+	}
+	&:focus {
+		@include focus;
+	}
+}
+
+.be-input-icon {
+	position: relative;
+	z-index: 1;
+	&.shadow .be-input {
+		border-color: $color-gray-lightest;
+		background-color: $color-gray-lightest;
+	}
+	.be-input:not(:first-child):not(:last-child){
+		padding: 0 $height;
+	}
+	.be-input:first-child:not(:last-child){
+		padding-right: $height;
+	}
+	.be-input:last-child:not(:first-child){
+		padding-left: $height;
+	}
+	.icon {
+		display: block;
+		position: absolute;
+		top: 0;
+		text-align: center;
+		color: $color-dark;
+		@include input-icon-size($height, $fs-l);
+		&:hover {
+			text-decoration: none;
+		}
+		&:first-child {
+			left: 0;
+		}
+		&:last-child {
+			right: 0;
+		}
+	}
+	a:hover {
+		color: $color-primary;
+	}
+	&.small {
+		.be-input {
+			height: $height-s;
+			&:not(:first-child):not(:last-child){
+				padding: 0 $height-s;
+			}
+			&:first-child:not(:last-child){
+				padding-right: $height-s;
+			}
+			&:last-child:not(:first-child){
+				padding-left: $height-s;
+			}
+		}
+		.icon {
+			@include input-icon-size($height-s, $fs);
+		}
+	}
+	&.big {
+		.be-input {
+			height: $height-l;
+			&:not(:first-child):not(:last-child){
+				padding: 0 $height-l;
+			}
+			&:first-child:not(:last-child){
+				padding-right: $height-l;
+			}
+			&:last-child:not(:first-child){
+				padding-left: $height-l;
+			}
+		}
+		.icon {
+			@include input-icon-size($height-l, $fs-xl);
+		}
+	}
+}
+
+.be-input-group {
+	position: relative;
+	display: table;
+	border-collapse: separate;
+	.addon,
+	.be-input,
+	.be-selection {
+		display: table-cell;
+	}
+	.addon {
+		position: relative;
+		z-index: 2;
+		width: 1%;
+		white-space: nowrap;
+		&:first-child {
+			padding-right: $mar-2xs;
+		}
+		&:last-child {
+			padding-left: $mar-2xs;
+		}
+		&:hover {
+			z-index: 3;
+		}
+		.addon-text {
+			display: block;
+			font-size: $fs;
+			border: 1px solid $color-gray-light;
+			@include text-size($pad, $height, $radius);
+			i {
+				display: block;
+				@include text-icon-size($height, $fs-l);
+			}
+		}
+	}
+	.be-input {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		&:focus {
+			z-index: 3;
+		}
+	}
+	&.shadow {
+		.addon-text,
+		.be-input,
+		.be-select {
+			border-color: $color-gray-lightest;
+			background-color: $color-gray-lightest;
+		}
+	}
+	&.cling {
+		.addon {
+			padding: 0;
+			&:first-child {
+				.addon-text,
+				.be-button,
+				.be-select {
+					margin-right: -1px;
+					border-top-right-radius: 0;
+					border-bottom-right-radius: 0;
+				}
+				.be-select {
+					display: table;
+				}
+			}
+			&:last-child {
+				.addon-text,
+				.be-button,
+				.be-select {
+					margin-left: -1px;
+					border-top-left-radius: 0;
+					border-bottom-left-radius: 0;
+				}
+			}
+		}
+		.be-input {
+			&:not(:first-child):not(:last-child) {
+				border-radius: 0;
+			}
+			&:first-child:not(:last-child) {
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+			&:last-child:not(:first-child) {
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+			}
+		}
+	}
+	&.small {
+		.addon-text {
+			@include text-size($pad-s, $height-s, $radius-s);
+			i {
+				@include text-icon-size($height-s, $fs);
+			}
+		}
+		.be-input {
+			border-radius: $radius-s;
+			height: $height-s;
+		}
+		.be-button {
+			@include button-size($pad-s, $height-s, $radius-s);
+			> i {
+				@include button-icon-size($height-s);
+			}
+		}
+		.be-select {
+			border-radius: $radius-s;
+			.select-selected {
+				@include select-size($height-s);
+			}
+			.select-icon {
+				@include select-icon-size($height-s);
+				~ .select-selected {
+					padding-right: $height-s - 2px;
+				}
+			}
+		}
+	}
+	&.big {
+		.addon-text {
+			@include text-size($pad, $height-l, $radius);
+			i {
+				@include text-icon-size($height-l, $fs-xl);
+			}
+		}
+		.be-input {
+			height: $height-l;
+		}
+		.be-button {
+			@include button-size($pad-l, $height-l, $radius);
+			> i {
+				@include button-icon-size($height-l);
+			}
+		}
+		.be-select {
+			.select-selected {
+				padding-left: $pad-s;
+				@include select-size($height-l);
+			}
+			.select-icon {
+				@include select-icon-size($height-l);
+				~ .select-selected {
+					padding-right: $height-l - 2px;
+				}
+			}
+		}
+	}
+}

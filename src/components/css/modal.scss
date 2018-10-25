@@ -1,0 +1,121 @@
+@import "_mixin.scss";
+@import "_variables.scss";
+
+.be-modal-active {
+	overflow: hidden;
+}
+
+.be-modal-mask {
+	z-index: $z-modal;
+	@include fixed-full;
+	@include mask;
+	@include trans-background;
+}
+
+.be-modal {
+	padding: $pad-modal 0;
+	z-index: $z-modal + 1;
+	@include fixed-full;
+	@include scroll-y;
+	.modal-container {
+		position: relative;
+		margin: 0 auto;
+		text-align: left;
+		width: $width-l;
+		border-radius: $radius-l;
+		background-color: $color-white;
+		@include box-shadow;
+	}
+	.modal-close {
+		display: block;
+		position: absolute;
+		z-index: 2;
+		top: 0;
+		right: 0;
+		text-align: center;
+		width: $height-modal;
+		height: $height-modal;
+		line-height: $height-modal;
+		font-size: $fs-xl;
+		color: $color-dark;
+		&:hover {
+			color: $color-primary;
+			cursor: $cursor-pointer;
+		}
+	}
+	.modal-header {
+		position: relative;
+		z-index: 1;
+		padding: 0 $pad;
+		height: $height-modal;
+		line-height: $height-modal;
+		font-size: $fs-xl;
+		color: $color-dark;
+		&:after {
+			bottom: 0;
+			left: 0;
+			right: 0;
+			@include after-solid-bottom;
+		}
+	}
+	.modal-footer {
+		position: relative;
+		z-index: 1;
+		text-align: right;
+		font-size: 0;
+		padding: $pad-xs $pad;
+		&:after {
+			top: 0;
+			left: 0;
+			right: 0;
+			@include after-solid-top;
+		}
+		.be-button {
+			margin: 0;
+			&:not(:first-child):not(:last-child) {
+				margin-right: $mar-2xs;
+				margin-left: $mar-2xs;
+			}
+			&:first-child:not(:last-child) {
+				margin-right: $mar-2xs;
+			}
+			&:last-child:not(:first-child) {
+				margin-left: $mar-2xs;
+			}
+		}
+	}
+	.modal-body {
+		padding: $pad;
+	}
+	&.mini .modal-container {
+		width: $width-s;
+	}
+	&.small .modal-container {
+		width: $width;
+	}
+	&.big .modal-container {
+		width: $width-xl;
+	}
+	&.large .modal-container {
+		width: $width-2xl;
+	}
+	&.vertical-middle {
+		text-align: center;
+		white-space: nowrap;
+		padding: $pad 0;
+		&:before {
+			content: "";
+			display: inline-block;
+			width: 0;
+			height: 100%;
+			vertical-align: middle;
+		}
+		.modal-container {
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+	&.button-center .modal-footer {
+		text-align: center;
+	}
+}
